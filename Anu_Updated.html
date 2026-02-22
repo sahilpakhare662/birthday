@@ -1,0 +1,2277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Happy Birthday, My Sister ❤️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+        :root {
+            --bg1: #120024;
+            --bg2: #2b0040;
+            --accent: #ff6fd8;
+            --accent2: #ffef9f;
+            --text: #ffffff;
+            --muted: #ffe6ff;
+            --card: rgba(15, 3, 35, 0.8);
+            --shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Poppins", sans-serif;
+            color: var(--text);
+            background: radial-gradient(circle at top, #3f0071 0, #0b0017 45%, #050009 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            position: relative;
+        }
+
+        /* Floating gradient background blobs */
+        .bg-blob {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.4;
+            z-index: -2;
+            animation: float-blob 18s ease-in-out infinite alternate;
+        }
+
+        .bg-blob.one {
+            top: -120px;
+            left: -80px;
+            background: radial-gradient(circle, #ff6fd8, transparent 60%);
+        }
+
+        .bg-blob.two {
+            bottom: -160px;
+            right: -120px;
+            background: radial-gradient(circle, #6fd6ff, transparent 60%);
+            animation-delay: 4s;
+        }
+
+        @keyframes float-blob {
+            0% {
+                transform: translate3d(0, 0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate3d(40px, -30px, 0) scale(1.1);
+            }
+
+            100% {
+                transform: translate3d(-40px, 40px, 0) scale(1.05);
+            }
+        }
+
+        /* ========== SPLASH SCREEN / BIRTHDAY CELEBRATION ========== */
+        .birthday-splash {
+            position: fixed;
+            inset: 0;
+            z-index: 999;
+            background: radial-gradient(circle at center, #ff6fd8 0%, #6d0071 40%, #050009 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            transition: opacity 1s ease-out;
+        }
+
+        .birthday-splash.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .splash-content {
+            text-align: center;
+            z-index: 10;
+            position: relative;
+            animation: splashFadeIn 0.8s ease-out;
+        }
+
+        @keyframes splashFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .splash-wish-big {
+            font-size: clamp(32px, 8vw, 72px);
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 0 30px rgba(255, 111, 216, 0.8), 0 0 60px rgba(255, 111, 216, 0.4);
+            margin-bottom: 20px;
+            line-height: 1.2;
+            animation: wiggle 2s ease-in-out infinite;
+        }
+
+        @keyframes wiggle {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            25% {
+                transform: translateY(-8px) rotate(-1deg);
+            }
+
+            50% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            75% {
+                transform: translateY(-8px) rotate(1deg);
+            }
+        }
+
+        .splash-lines {
+            font-size: clamp(16px, 4vw, 28px);
+            font-weight: 700;
+            color: #ffef9f;
+            margin: 12px 0;
+            text-shadow: 0 0 15px rgba(255, 239, 159, 0.5);
+            animation: slideIn 0.6s ease-out forwards;
+            opacity: 0;
+        }
+
+        .splash-lines:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .splash-lines:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .splash-lines:nth-child(5) {
+            animation-delay: 0.6s;
+        }
+
+        .splash-lines:nth-child(6) {
+            animation-delay: 0.8s;
+        }
+
+        .splash-lines:nth-child(7) {
+            animation-delay: 1s;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Blasts from corners */
+        .blast {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .blast-particle {
+            position: absolute;
+            border-radius: 50%;
+            animation: blastExpand 1.2s ease-out forwards;
+        }
+
+        @keyframes blastExpand {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(var(--tx), var(--ty)) scale(0.2);
+            }
+        }
+
+        /* Balloons */
+        .balloon {
+            position: fixed;
+            bottom: -100px;
+            width: 30px;
+            height: 35px;
+            border-radius: 50% 50% 50% 0;
+            transform: rotate(-45deg);
+            animation: float-up 5s ease-in infinite;
+            z-index: 8;
+        }
+
+        @keyframes float-up {
+            0% {
+                bottom: -100px;
+                opacity: 1;
+            }
+
+            100% {
+                bottom: 110vh;
+                opacity: 0;
+            }
+        }
+
+        .balloon::before {
+            content: '';
+            position: absolute;
+            width: 1px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.4);
+            left: 50%;
+            bottom: -60px;
+            transform: translateX(-50%);
+        }
+
+        .balloon.red {
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+        }
+
+        .balloon.blue {
+            background: linear-gradient(135deg, #0099ff, #0066cc);
+        }
+
+        .balloon.yellow {
+            background: linear-gradient(135deg, #ffff00, #ffcc00);
+        }
+
+        .balloon.pink {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+        }
+
+        .balloon.green {
+            background: linear-gradient(135deg, #00ff00, #00cc00);
+        }
+
+        /* Global layout */
+        .page-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 16px 16px 60px;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            backdrop-filter: blur(20px);
+            background: linear-gradient(90deg, rgba(9, 0, 17, 0.82), rgba(24, 0, 54, 0.75));
+            border-radius: 0;
+            border: none;
+            border-bottom: 2px solid rgba(255, 111, 216, 0.3);
+            margin: 0 auto 20px;
+            max-width: 100%;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+            width: 100%;
+            padding: 16px 0;
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 24px;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .logo-circle {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff8fb1, #b28dff, #8fd3f4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 12px 32px rgba(255, 143, 177, 0.55);
+            flex-shrink: 0;
+            border: 3px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .logo-circle img {
+            width: 96%;
+            height: 96%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .nav-text-main {
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-text-sub {
+            font-size: 13px;
+            color: var(--muted);
+            margin-top: 2px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 16px;
+            font-size: 14px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--muted);
+            padding: 8px 14px;
+            border-radius: 999px;
+            transition: background 0.25s, color 0.25s, transform 0.18s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            background: rgba(255, 111, 216, 0.2);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .nav-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 18px;
+            border-radius: 999px;
+            background: radial-gradient(circle at top left, #ff6fd8, #ff9f7f);
+            box-shadow: 0 8px 24px rgba(255, 111, 216, 0.6);
+            font-size: 14px;
+            font-weight: 700;
+            color: #220021;
+            cursor: pointer;
+            border: none;
+        }
+
+        .nav-pill span {
+            background: rgba(0, 0, 0, 0.25);
+            padding: 3px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            color: #ffefef;
+        }
+
+        /* Sections */
+        section {
+            margin: 20px 0;
+            border-radius: 26px;
+            background: linear-gradient(135deg, rgba(14, 1, 34, 0.96), rgba(48, 5, 72, 0.96));
+            box-shadow: var(--shadow);
+            padding: 22px 18px 24px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            position: relative;
+            overflow: hidden;
+        }
+
+        section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.06), transparent 50%);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transform: translate3d(0, 18px, 0);
+        }
+
+        section.visible::before {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            margin-bottom: 40px;
+            padding: 10px 0;
+        }
+
+        .section-tag {
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent2);
+            opacity: 0.9;
+            padding: 6px 14px;
+            border-radius: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(26px, 5vw, 34px);
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-title span {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .section-subtitle {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 4px;
+            max-width: 540px;
+        }
+
+        .pill-soft {
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 15px;
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: var(--muted);
+        }
+
+        .section-body {
+            margin-top: 12px;
+        }
+
+        /* Hero / landing */
+        .hero-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.1fr);
+            gap: 18px;
+            align-items: center;
+        }
+
+        .hero-title-main {
+            font-size: clamp(25px, 5vw, 32px);
+            line-height: 1.15;
+            margin-bottom: 8px;
+        }
+
+        .hero-title-main span.highlight {
+            background: linear-gradient(120deg, #ffef9f, #ff9fef);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero-line-marathi {
+            font-size: 13px;
+            color: var(--accent2);
+            margin-bottom: 6px;
+        }
+
+        .hero-text {
+            font-size: 13px;
+            color: var(--muted);
+            max-width: 580px;
+        }
+
+        .hero-text strong {
+            font-weight: 600;
+            color: #fff5ff;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 14px;
+            align-items: center;
+        }
+
+        .btn-primary {
+            border: none;
+            border-radius: 999px;
+            padding: 9px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            background: linear-gradient(135deg, #ff6fd8, #ff9f7f);
+            color: #220021;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.55);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+
+        .btn-primary::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, rgba(255, 255, 255, 0.18), transparent 60%);
+            transform: translateX(-120%);
+            transition: transform 0.4s ease-out;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px) scale(1.02);
+            box-shadow: 0 18px 36px rgba(0, 0, 0, 0.7);
+        }
+
+        .btn-primary:hover::after {
+            transform: translateX(120%);
+        }
+
+        .btn-ghost {
+            border-radius: 999px;
+            padding: 8px 14px;
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+            font-size: 12px;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.35);
+            color: var(--muted);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.22s, border-color 0.22s, transform 0.18s;
+        }
+
+        .btn-ghost:hover {
+            background: rgba(0, 0, 0, 0.6);
+            border-color: rgba(255, 255, 255, 0.7);
+            transform: translateY(-1px);
+        }
+
+        .hero-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 3px 10px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            font-size: 11px;
+            margin-bottom: 8px;
+        }
+
+        .hero-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 999px;
+            background: #5cffc0;
+            position: relative;
+        }
+
+        .hero-dot::after {
+            content: "";
+            position: absolute;
+            inset: -5px;
+            border-radius: 999px;
+            border: 1px solid rgba(92, 255, 192, 0.6);
+            animation: ping 1.5s infinite;
+        }
+
+        @keyframes ping {
+            0% {
+                transform: scale(0.6);
+                opacity: 0.9;
+            }
+
+            80% {
+                transform: scale(1.7);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1.7);
+                opacity: 0;
+            }
+        }
+
+        /* Hero right */
+        .hero-card {
+            position: relative;
+            border-radius: 22px;
+            background: radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 55%),
+                linear-gradient(145deg, rgba(8, 0, 18, 0.85), rgba(57, 0, 86, 0.96));
+            padding: 16px 14px 14px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .hero-photo-wrap {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            height: 210px;
+            background: #19002f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-photo-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.05);
+            transition: transform 0.75s ease-out;
+        }
+
+        .hero-card:hover img {
+            transform: scale(1.12);
+        }
+
+        .photo-badge {
+            position: absolute;
+            left: 12px;
+            bottom: 12px;
+            padding: 6px 10px;
+            border-radius: 999px;
+            background: rgba(0, 0, 0, 0.58);
+            backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            font-size: 11px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .photo-badge span {
+            display: inline-flex;
+            padding: 2px 7px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.12);
+            font-size: 10px;
+        }
+
+        .hero-note {
+            margin-top: 10px;
+            font-size: 11px;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+        }
+
+        .tiny-heart-row {
+            display: flex;
+            gap: 4px;
+            font-size: 11px;
+            color: #ffbdda;
+            align-items: center;
+        }
+
+        .music-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 10px;
+            background: rgba(0, 0, 0, 0.46);
+            padding: 3px 8px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .bar {
+            width: 2px;
+            border-radius: 999px;
+            background: #ffef9f;
+            animation: bars 1s infinite;
+        }
+
+        .bar:nth-child(2) {
+            animation-delay: 0.15s;
+        }
+
+        .bar:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .bar:nth-child(4) {
+            animation-delay: 0.45s;
+        }
+
+        @keyframes bars {
+
+            0%,
+            100% {
+                height: 4px;
+            }
+
+            50% {
+                height: 10px;
+            }
+        }
+
+        /* Journey timeline */
+        .timeline {
+            position: relative;
+            margin-top: 16px;
+            padding-left: 14px;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 11px;
+            top: 4px;
+            bottom: 4px;
+            width: 3px;
+            background: linear-gradient(to bottom, #ff6fd8, #ffef9f);
+            opacity: 0.8;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 36px;
+            margin-bottom: 28px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 0;
+            top: 6px;
+            width: 14px;
+            height: 14px;
+            border-radius: 999px;
+            background: #120024;
+            border: 3px solid #ff6fd8;
+            box-shadow: 0 0 0 4px rgba(255, 111, 216, 0.25);
+        }
+
+        .timeline-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #ffef9f;
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+
+        .timeline-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #fff;
+        }
+
+        .timeline-text {
+            font-size: 14px;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .timeline-emotion {
+            font-size: 13px;
+            color: #ffbdda;
+            margin-top: 6px;
+            font-style: italic;
+            font-weight: 500;
+            padding: 8px 12px;
+            background: rgba(255, 111, 216, 0.1);
+            border-left: 3px solid #ff6fd8;
+            border-radius: 4px;
+        }
+
+        /* Memories grid */
+        .memories-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            margin-top: 12px;
+        }
+
+        .memory-card {
+            border-radius: 16px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.3);
+            position: relative;
+            min-height: 280px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: stretch;
+            color: #fff;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+            border: 2px solid rgba(255, 255, 255, 0.16);
+        }
+
+        .memory-card img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: saturate(1.05) contrast(1.03);
+            transform: scale(1.03);
+            transition: transform 0.6s ease-out, filter 0.6s ease-out, opacity 0.5s ease;
+            opacity: 1;
+        }
+
+        .memory-overlay {
+            position: relative;
+            width: 100%;
+            padding: 12px 12px 14px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.5) 60%, transparent 100%);
+            z-index: 1;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .memory-overlay-text {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            padding: 16px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 2;
+            text-align: center;
+            border-radius: 16px;
+        }
+
+        .memory-tag {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #ffef9f;
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+
+        .memory-caption {
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .memory-overlay-text .memory-tag {
+            color: #ffbdda;
+        }
+
+        .memory-overlay-text .memory-caption {
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
+        .memory-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(255, 111, 216, 0.4);
+            border-color: rgba(255, 111, 216, 0.6);
+        }
+
+        .memory-card:hover img {
+            transform: scale(1.08);
+            filter: saturate(1.15) contrast(1.1) brightness(0.7);
+            opacity: 0.4;
+        }
+
+        .memory-card:hover .memory-overlay-text {
+            opacity: 1;
+        }
+
+        .memory-card:hover .memory-overlay {
+            opacity: 0;
+        }
+
+        /* Fights + bond */
+        .bond-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            gap: 16px;
+            margin-top: 10px;
+        }
+
+        .chip-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 6px;
+        }
+
+        .chip {
+            font-size: 10px;
+            padding: 5px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            background: rgba(0, 0, 0, 0.35);
+            color: var(--muted);
+        }
+
+        .meter-wrap {
+            margin-top: 10px;
+            border-radius: 16px;
+            background: rgba(0, 0, 0, 0.45);
+            padding: 12px 14px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            font-size: 12px;
+        }
+
+        .rating-stars {
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        .star {
+            opacity: 0.4;
+            /* ⭐ dim by default */
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .star.active {
+            opacity: 1;
+            /* ⭐ bright only when selected */
+            transform: scale(1.05);
+        }
+
+        .rating-text {
+            margin-top: 8px;
+            font-size: 14px;
+            opacity: 0.85;
+            transition: all 0.2s ease;
+        }
+
+        .meter-bar {
+            margin-top: 8px;
+            height: 6px;
+            background: #eee;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .meter-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #ff7aa2, #ff3f7f);
+            transition: width 0.3s ease;
+        }
+
+        .bond-note {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 8px;
+            line-height: 1.6;
+        }
+
+        /* Dripping images animation (enlarged + slowed) */
+        .dripping-images-container {
+            position: relative;
+            width: 100%;
+            height: 700px;
+            background: linear-gradient(135deg, rgba(14, 1, 34, 0.5), rgba(48, 5, 72, 0.5));
+            border-radius: 20px;
+            margin-top: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: block;
+            padding: 0;
+        }
+
+        /* background slideshow layers */
+        .dripping-images-container .drip-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            filter: blur(6px) saturate(0.95) brightness(0.55);
+            transition: opacity 1s ease;
+            opacity: 0;
+            z-index: 0;
+        }
+
+        /* Memories slideshow (clear background + front slideshow) */
+        .dripping-images-container {
+            position: relative;
+            width: 100%;
+            height: 700px;
+            border-radius: 20px;
+            margin-top: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: linear-gradient(135deg, rgba(14, 1, 34, 0.45), rgba(48, 5, 72, 0.45));
+            padding: 0;
+        }
+
+        /* Slideshow slides (perfect fit) */
+        .slideshow {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            display: block;
+            overflow: hidden;
+            background: transparent;
+        }
+
+        .slideshow .slide {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            opacity: 0;
+            transition: opacity 1s ease;
+            display: block;
+            background: rgba(0, 0, 0, 0.15);
+        }
+
+        .slideshow .slide.show {
+            opacity: 1;
+        }
+
+        /* Remove any leftover drop elements if present */
+        .dripping-img {
+            display: none !important;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            width: 11px;
+            height: 11px;
+            background: #ff6fd8;
+            transform: rotate(45deg);
+            animation: fall 9s linear infinite;
+            opacity: 0.68;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: "";
+            position: absolute;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: inherit;
+        }
+
+        .heart::before {
+            top: -5px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: -5px;
+            top: 0;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translate3d(0, -100px, 0) rotate(45deg);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: 0.9;
+            }
+
+            100% {
+                transform: translate3d(0, 140vh, 0) rotate(65deg);
+                opacity: 0;
+            }
+        }
+
+        /* Scroll reveal base */
+        .reveal {
+            opacity: 0;
+            transform: translate3d(0, 18px, 0);
+            transition:
+                opacity 0.7s ease-out,
+                transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+
+            /* Splash screen responsive */
+            .splash-wish-big {
+                font-size: clamp(28px, 7vw, 52px);
+                margin-bottom: 16px;
+            }
+
+            .splash-lines {
+                font-size: clamp(13px, 3.5vw, 22px);
+                margin: 8px 0;
+            }
+
+            .balloon {
+                width: 24px;
+                height: 28px;
+            }
+
+            .balloon::before {
+                height: 45px;
+            }
+
+            .blast-particle {
+                animation: blastExpandMobile 1.2s ease-out forwards;
+            }
+
+            @keyframes blastExpandMobile {
+                0% {
+                    opacity: 1;
+                    transform: translate(0, 0) scale(1);
+                }
+
+                100% {
+                    opacity: 0;
+                    transform: translate(calc(var(--tx) * 0.75), calc(var(--ty) * 0.75)) scale(0.15);
+                }
+            }
+
+            header {
+                border-radius: 0;
+                margin-top: 0;
+                padding: 12px 0;
+            }
+
+            .nav-inner {
+                flex-direction: column;
+                align-items: center;
+                padding: 12px 16px 14px;
+                gap: 12px;
+            }
+
+            .nav-logo {
+                flex-direction: column;
+                text-align: center;
+                gap: 8px;
+                width: 100%;
+            }
+
+            .logo-circle {
+                width: 80px;
+                height: 80px;
+                margin: 0 auto;
+            }
+
+            .nav-text-main {
+                font-size: 18px;
+            }
+
+            .nav-text-sub {
+                font-size: 12px;
+            }
+
+            nav ul {
+                justify-content: center;
+                gap: 12px;
+                font-size: 13px;
+            }
+
+            .nav-pill {
+                width: 100%;
+                justify-content: center;
+                font-size: 13px;
+            }
+
+            .hero-layout {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .hero-card {
+                order: -1;
+            }
+
+            .hero-photo-wrap {
+                height: 280px;
+            }
+
+            .hero-title-main {
+                font-size: clamp(20px, 6vw, 28px);
+            }
+
+            .section-title {
+                font-size: clamp(22px, 5vw, 28px);
+            }
+
+            .timeline-item {
+                padding-left: 32px;
+                margin-bottom: 24px;
+            }
+
+            .timeline-text {
+                font-size: 13px;
+                line-height: 1.6;
+            }
+
+            .timeline-emotion {
+                font-size: 12px;
+            }
+
+            .memories-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px;
+            }
+
+            .memory-card {
+                min-height: 250px;
+            }
+
+            .bond-layout {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .dripping-images-container {
+                height: 520px;
+                padding: 12px;
+                gap: 12px;
+            }
+
+            .dripping-img {
+                width: 120px;
+                height: 120px;
+                animation: drip 10s linear infinite;
+            }
+
+            /* Slightly longer stagger on mobile/tablet so drops feel relaxed */
+            .dripping-images-container .dripping-img:nth-child(1) {
+                animation-delay: 0s;
+            }
+
+            .dripping-images-container .dripping-img:nth-child(2) {
+                animation-delay: 1s;
+            }
+
+            .dripping-images-container .dripping-img:nth-child(3) {
+                animation-delay: 2s;
+            }
+
+            .dripping-images-container .dripping-img:nth-child(4) {
+                animation-delay: 3s;
+            }
+
+            .dripping-images-container .dripping-img:nth-child(5) {
+                animation-delay: 4s;
+            }
+
+            .dripping-images-container .dripping-img:nth-child(6) {
+                animation-delay: 5s;
+            }
+
+            .dripping-images-container .dripping-img:nth-child(7) {
+                animation-delay: 6s;
+            }
+
+            .dripping-images-container .dripping-img:nth-child(8) {
+                animation-delay: 7s;
+            }
+
+            .support-lines {
+                font-size: 12px;
+            }
+
+            /* Footer responsive spacing for tablet */
+            footer {
+                padding: 20px 16px 30px;
+                margin-top: 20px;
+            }
+
+            #support {
+                margin-bottom: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            /* Splash screen mobile responsive */
+            .splash-wish-big {
+                font-size: clamp(22px, 6vw, 40px);
+                margin-bottom: 12px;
+            }
+
+            .splash-lines {
+                font-size: clamp(11px, 3vw, 16px);
+                margin: 6px 0;
+            }
+
+            .splash-content {
+                padding: 0 16px;
+            }
+
+            .balloon {
+                width: 20px;
+                height: 24px;
+            }
+
+            .balloon::before {
+                height: 36px;
+            }
+
+            .blast-particle {
+                animation: blastExpandSmall 1s ease-out forwards;
+            }
+
+            @keyframes blastExpandSmall {
+                0% {
+                    opacity: 1;
+                    transform: translate(0, 0) scale(1);
+                }
+
+                100% {
+                    opacity: 0;
+                    transform: translate(calc(var(--tx) * 0.5), calc(var(--ty) * 0.5)) scale(0.1);
+                }
+            }
+
+            .page-wrapper {
+                padding: 12px 10px 100px;
+            }
+
+            header {
+                padding: 10px 0;
+                margin-bottom: 12px;
+            }
+
+            .nav-inner {
+                padding: 10px 12px;
+                gap: 8px;
+            }
+
+            .logo-circle {
+                width: 68px;
+                height: 68px;
+            }
+
+            .nav-text-main {
+                font-size: 16px;
+            }
+
+            .nav-text-sub {
+                font-size: 11px;
+            }
+
+            nav ul {
+                gap: 8px;
+                font-size: 12px;
+            }
+
+            .nav-pill {
+                padding: 8px 14px;
+                font-size: 12px;
+            }
+
+            section {
+                border-radius: 18px;
+                padding: 14px 12px 16px;
+                margin: 14px 0;
+            }
+
+            .hero-photo-wrap {
+                height: 240px;
+            }
+
+            .hero-title-main {
+                font-size: 22px;
+            }
+
+            .section-title {
+                font-size: 20px;
+            }
+
+            .section-subtitle {
+                font-size: 11px;
+            }
+
+            .memories-grid {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 10px;
+            }
+
+            .memory-card {
+                min-height: 250px;
+            }
+
+            .timeline-item {
+                padding-left: 28px;
+                margin-bottom: 20px;
+            }
+
+            .timeline-dot {
+                width: 12px;
+                height: 12px;
+                border-width: 2px;
+            }
+
+            .timeline-title {
+                font-size: 14px;
+            }
+
+            .timeline-text {
+                font-size: 12px;
+                line-height: 1.5;
+            }
+
+            .timeline-emotion {
+                font-size: 11px;
+            }
+
+            .hero-line-marathi {
+                font-size: 12px;
+            }
+
+            .hero-text {
+                font-size: 12px;
+            }
+
+            .dripping-images-container {
+                height: 460px;
+                padding: 8px;
+                gap: 12px;
+            }
+
+            .dripping-img {
+                width: 110px;
+                height: 110px;
+                animation: drip 10s linear infinite;
+            }
+
+            /* Stagger delays for small screens */
+            .dripping-images-container .dripping-img:nth-child(1) {
+                animation-delay: 0s;
+            }
+
+            .dripping-images-container .dripping-img:nth-child(2) {
+                animation-delay: 0.9s;
+            }
+
+            .dripping-images-container .dripping-img:nth-child(3) {
+                animation-delay: 1.8s;
+            }
+
+            .dripping-images-container .dripping-img:nth-child(4) {
+                animation-delay: 2.7s;
+            }
+
+            .dripping-images-container .dripping-img:nth-child(5) {
+                animation-delay: 3.6s;
+            }
+
+            .dripping-images-container .dripping-img:nth-child(6) {
+                animation-delay: 4.5s;
+            }
+
+            .dripping-images-container .dripping-img:nth-child(7) {
+                animation-delay: 5.4s;
+            }
+
+            .dripping-images-container .dripping-img:nth-child(8) {
+                animation-delay: 6.3s;
+            }
+
+            .support-lines {
+                font-size: 11px;
+            }
+
+            .section-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .pill-soft {
+                align-self: flex-start;
+            }
+
+            /* Footer and support section mobile spacing */
+            footer {
+                text-align: center;
+                font-size: 10px;
+                color: rgba(255, 255, 255, 0.5);
+                margin-top: 20px;
+                padding: 20px 12px;
+                line-height: 1.8;
+            }
+
+            .support-center {
+                text-align: center;
+                padding: 16px;
+            }
+
+            .support-lines {
+                font-size: 12px !important;
+                line-height: 1.6;
+                margin: 12px 0;
+            }
+
+            .signature {
+                margin-top: 16px;
+                font-size: 12px;
+            }
+
+            #support {
+                margin-bottom: 40px;
+                padding-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Birthday Splash Screen -->
+    <div class="birthday-splash" id="birthdaySplash">
+        <div class="blast" id="blastLeft"></div>
+        <div class="blast" id="blastRight"></div>
+        <div class="splash-content">
+            <div class="splash-wish-big">🎉 HAPPY BIRTHDAY! 🎉</div>
+            <div class="splash-lines">Wishing You A Very Happy Birthday</div>
+            <div class="splash-lines">My Dear Sister</div>
+            <div class="splash-lines">My Dear Friend</div>
+            <div class="splash-lines">My Dear Support System</div>
+            <div class="splash-lines">My Dear Secret Partner</div>
+            <div class="splash-lines">My Dear Daily Routine</div>
+            <div class="splash-lines">My Dear Everything...💖</div>
+        </div>
+        <div id="balloonContainer"></div>
+    </div>
+
+    <!-- Soft background blobs -->
+    <div class="bg-blob one"></div>
+    <div class="bg-blob two"></div>
+
+    <!-- Tiny falling hearts -->
+    <div class="confetti" aria-hidden="true"></div>
+
+    <!-- Hidden autoplay music (unmuted on first click anywhere) -->
+    <audio id="bg-music" loop autoplay muted style="display:none;">
+        <source src="Sukoon - Othoms (Official Lyrics Video) Valentine Special Song  New Hindi Song - Nis Universal.mp3"
+            type="audio/mpeg" />
+    </audio>
+
+    <header>
+        <div class="nav-inner">
+            <div class="nav-logo">
+                <div class="logo-circle">
+                    <img src="1.jpg" alt="Logo">
+                </div>
+                <div>
+                    <div class="nav-text-main">Dear, MY SISTER Anu...😘🌍💖</div>
+                    <div class="nav-text-sub">From stranger vibes to unbreakable bond</div>
+                </div>
+            </div>
+
+            <nav>
+                <ul>
+                    <li><a href="#hero">Wish</a></li>
+                    <li><a href="#journey">Journey</a></li>
+                    <li><a href="#memories">Memories</a></li>
+                    <li><a href="#fights">Fights & Bond</a></li>
+                    <li><a href="#memories-drip">Our Memories</a></li>
+                    <!-- <li><a href="#support">Forever Support</a></li> -->
+                </ul>
+            </nav>
+
+            <button class="nav-pill" onclick="scrollToSection('support')">
+                For You
+                <span>Always Here</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="page-wrapper">
+        <!-- HERO / LANDING -->
+        <section id="hero" class="reveal">
+            <div class="section-header">
+                <div>
+                    <div class="section-tag">Happy birthday Anu! 🎂</div>
+                    <div class="section-title">
+                        <span>🎂</span>
+                        <span>Warm wish from the heart</span>
+                    </div>
+                    <div class="section-subtitle">
+                        One single page that keeps our whole story together – from first Hi to this never‑breaking bond.
+                    </div>
+                </div>
+                <div class="pill-soft">Since 5 years 8 months 14 days of togetherness+++...</div>
+                <div class="pill-soft">Our favourite memory together</div>
+
+            </div>
+
+            <div class="section-body hero-layout">
+                <div>
+                    <div class="hero-label">
+                        <span class="hero-dot"></span>
+                        <span>आजचा दिवस तुझाच आहे, ताई 💫</span>
+                    </div>
+
+                    <h1 class="hero-title-main">
+                        <span class="highlight">Happy Birthday</span>,
+                        My Sister <span>💖</span>
+                    </h1>
+
+                    <!-- You can tweak these lines -->
+                    <p class="hero-line-marathi">
+                        बहिण हे फक्त नातं नसते, ती असते प्रत्येक वादळात शांत सावली, माझ्यासाठी तशीच तू आहेस.
+                    </p>
+
+                    <p class="hero-text">
+                        From the time we were almost <strong>strangers</strong> to now where our bond is
+                        <strong>unbreakable</strong>, you have become my safe place, my loudest cheerleader, and my
+                        biggest strength.
+                        Fights, anger, misunderstandings – काहीही झालं तरी शेवटी आपण
+                        एकमेकांशिवाय अपूर्णच आहोत अस आपल नात.
+                    </p>
+
+                    <div class="hero-actions">
+                        <button class="btn-primary" onclick="scrollToSection('journey')">
+                            ✨ Start our journey
+                        </button>
+
+                        <button class="btn-ghost" onclick="toggleMusic()">
+                            🎵 Background music
+                            <span id="music-status">(tap to feel vibes)</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="hero-card">
+                    <div class="hero-photo-wrap">
+                        <!-- Replace with your real combined photo -->
+                        <img src="rakhi1.jpg" alt="Our favourite memory together" />
+                        <div class="photo-badge">
+                            From Stranger's → Family
+                            <span>since 2020</span>
+                        </div>
+                    </div>
+
+                    <div class="hero-note">
+                        <div class="tiny-heart-row">
+                            <span>💫</span>
+                            <span>Every year our bond gets stronger, not older.</span>
+                        </div>
+                        <div class="music-indicator">
+                            <div style="display:flex;gap:2px;">
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                                <div class="bar"></div>
+                            </div>
+                            <span>for your birthday mood</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OUR JOURNEY -->
+        <section id="journey" class="reveal">
+            <div class="section-header">
+                <div>
+                    <div class="section-tag">Our Journey</div>
+                    <div class="section-title">
+                        <span>🧭</span>
+                        <span>From Strangers to Here...</span>
+                    </div>
+                    <div class="section-subtitle">
+                        A beautiful timeline of how two different people slowly became home for each other, year by
+                        year.
+                    </div>
+                </div>
+                <div class="pill-soft">Almost 6 Years of Beautiful Memories</div>
+            </div>
+
+            <div class="section-body">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-label">📅 June 2020 • "बस ओळख आहे"</div>
+                        <div class="timeline-title">The First Day – Just Names & Hi's</div>
+                        <div class="timeline-text">
+                            8 June 2020 – तुझा मला माझा तुला पहिला संदेश मला मिळाला: "Hi"
+                            <br />सुरुवातीला आपण फक्त एकमेकांना ओळखत होतो – casual hi‑hello, random things, थोडंसंच
+                            बोलणं.
+                            त्या वेळी कल्पनाही नव्हती की तू माझी इतकी जवळची बहिण होशील. पण काहीतरी जमत होतं.
+                        </div>
+                        <div class="timeline-emotion">
+                            💭 तुझ्या "Hi" मध्ये कधी कल्पना होती की हा एक आजीवनचा साथ बनेल?
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-label">📅 2021 • "थोडं जास्त बोलू लागलो"</div>
+                        <div class="timeline-title">Building Trust, Sharing Secrets</div>
+                        <div class="timeline-text">
+                            हळूहळू आपण दिवसातील छोट्या‑छोट्या गोष्टी शेअर करायला लागलो – problems, achievements,
+                            funny moments, dreams. त्या chats मध्येच आपली bond quietly build होत होती.
+                            सकाळी उठून पहिल्या गोष्टी तूला message करणं हे routine झालं.
+                        </div>
+                        <div class="timeline-emotion">
+                            💭 तेव्हा मला बुझलं की तू फक्त एक friend नाही, तू माझ्या दिवसाचा एक महत्वाचा हिस्सा आहेस.
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-label">📅 2022-2023 • "तू माझी Comfert Zone "</div>
+                        <div class="timeline-title">When You Became My Emotional Backbone</div>
+                        <div class="timeline-text">
+                            काही दिवस असे आले ज्या दिवशी मी माझ्या मनातलं सगळं फक्त तुझ्याशी share केलं –
+                            fears, insecurities, जे कोणी कधी नव्हते ऐकलेलं. त्या दिवसापासून तू फक्त बहिण नाही,
+                            तर मैत्रीण – माझ्यासाठी सगळ्यात मजबूत आधार झालीस.
+                            दिवसेंदिवस तू माझ्या जीवनातली एक अनमोल व्यक्ती बनत गेलीस, ज्याच्याशी मी काहीही बोलू शकतो.
+                        </div>
+                        <div class="timeline-emotion">
+                            💭 तू माझ मी तुझ दुःख समजत गेलो, सगळ्या ठिकाणी एकमेकाना आधार दिला .
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-label">📅 2024-2026 • "Unbreakable & Forever"</div>
+                        <div class="timeline-title">Now – Pure, Unfiltered Bond</div>
+                        <div class="timeline-text">
+                            आता situation काहीही असो – हसू, रडू, success, failure – माझ्या मनात पहिल्या नाव तुझंच येतं.
+                            आपण दूर असलो तरी मला माहित आहे, आपण कायम एकमेकांच्या पाठीशी उभे आहोत .
+                            हजारो दिवसांचे memories, हजारो moments, बोलण ,हसण , रडण सगळ्यात आपला bond घट्ट झालाय.
+                        </div>
+                        <div class="timeline-emotion">
+                            💖 तू नाहीस तर खूप गोष्टी अपूर्ण आहेत, तुझी साथ हर पल बहुमूल्य आहे.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MEMORIES -->
+        <section id="memories" class="reveal">
+            <div class="section-header">
+                <div>
+                    <div class="section-tag">Our favourite memories</div>
+                    <div class="section-title">
+                        <span>📸</span>
+                        <span>Moments that built "us"</span>
+                    </div>
+                    <div class="section-subtitle">
+                        काही फोटो, काही lines – पण प्रत्येकाच्या मागे मोठी story आहे जी फक्त आपल्यालाच माहित आहे.
+                    </div>
+                </div>
+                <div class="pill-soft">Tap with eyes, feel with heart</div>
+            </div>
+
+            <div class="section-body">
+                <div class="memories-grid">
+                    <!-- Memory 1 -->
+                    <div class="memory-card">
+                        <img src="rakhi2.jpg" alt="One of our earliest memories together" />
+                        <div class="memory-overlay">
+                            <div class="memory-tag">शुरूवात</div>
+                            <div class="memory-caption">
+                                ती पहिली भेट – awkward photo, पण त्या दिवसाने आपल्याला आणखी जवळ आणलं.
+                            </div>
+                        </div>
+                        <div class="memory-overlay-text">
+                            <div class="memory-tag">शुरूवात</div>
+                            <div class="memory-caption">
+                                ती पहिली भेट – awkward photo, पण त्या दिवसाने आपल्याला आणखी जवळ आणलं.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Memory 2 -->
+                    <div class="memory-card">
+                        <img src="hasu.jpg" alt="Laughing and making fun together" />
+                        <div class="memory-overlay">
+                            <div class="memory-tag">Smile</div>
+                            <div class="memory-caption">
+                                तुझ random हसण तो moment – त्या हसण्यामध्येच सगळे Problems Solve.
+                            </div>
+                        </div>
+                        <div class="memory-overlay-text">
+                            <div class="memory-tag">Smile</div>
+                            <div class="memory-caption">
+                                तुझ random हसण तो moment – त्या हसण्यामध्येच सगळे Problems Solve.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Memory 3 -->
+                    <div class="memory-card">
+                        <img src="happy .jpg" alt="Serious emotional talk night" />
+                        <div class="memory-overlay">
+                            <div class="memory-tag">Pretty</div>
+                            <div class="memory-caption">
+                                तुझी सुंदरता म्हणजे शब्द थांबतात,
+                                आणि मन शांत होतं.
+                            </div>
+                        </div>
+                        <div class="memory-overlay-text">
+                            <div class="memory-tag">Pretty</div>
+                            <div class="memory-caption">
+                                तुझी सुंदरता म्हणजे शब्द थांबतात,
+                                आणि मन शांत होतं.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Memory 4 -->
+                    <div class="memory-card">
+                        <img src="simplicity.jpg" alt="Random outing memory" />
+                        <div class="memory-overlay">
+                            <div class="memory-tag">Simplicity</div>
+                            <div class="memory-caption">
+                                तुझा साधेपणा, शांत स्वभाव आणि सोज्वळ मोकळं मन हेच तुझं खरं सौंदर्य.
+                            </div>
+                        </div>
+                        <div class="memory-overlay-text">
+                            <div class="memory-tag">Simplicity</div>
+                            <div class="memory-caption">
+                                तुझा साधेपणा म्हणजे जगाला दाखवायचं काही नसतानाही
+                                सगळ्यांच्या मनात आपोआप जागा मिळवणारी शांत ताकद आहे,
+                                आणि तुझा स्वभाव असा आहे की तो कोणाचंही मन न जिंकता,
+                                नकळत सगळ्यांच्या मनात घर करून जातो
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Memory 5 -->
+                    <div class="memory-card">
+                        <img src="dreamssssssssssss.jpeg" alt="Your achievement celebration" />
+                        <div class="memory-overlay">
+                            <div class="memory-tag">Your Dream</div>
+                            <div class="memory-caption">
+                                तुझी स्वप्नं आकार घेताना पाहणं, माझ्या स्वतःच्या यशाइतकंच नाही तर त्याहूनही जास्त समाधान
+                                देणारं होतं.
+                            </div>
+                        </div>
+                        <div class="memory-overlay-text">
+                            <div class="memory-tag">Your Dream</div>
+                            <div class="memory-caption">
+                                जेव्हा तू काहीतरी मोठं achieve केलंस, मला स्वतःच्या success पेक्षा जास्त proud वाटलं.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Memory 6 -->
+                    <div class="memory-card">
+                        <img src="cazy u.jpg" alt="Our crazy funny pose" />
+                        <div class="memory-overlay">
+                            <div class="memory-tag">Crazy You</div>
+                            <div class="memory-caption">
+                                Crazy you — living, not pretending.
+                                हसण्यातून उमटलेलं खरं आयुष्य.
+                            </div>
+                        </div>
+                        <div class="memory-overlay-text">
+                            <div class="memory-tag">Crazy You</div>
+                            <div class="memory-caption">
+                                Crazy you — no rules, just moments.
+                                मोकळेपणात जपलेली आठवण.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FIGHTS & BOND -->
+        <section id="fights" class="reveal">
+            <div class="section-header">
+                <div>
+                    <div class="section-tag">Fights • Anger • Misunderstandings</div>
+                    <div class="section-title">
+                        <span>⚡</span>
+                        <span>Still an unbroken bond</span>
+                    </div>
+                    <div class="section-subtitle">
+                        We fight, we stop talking, we get angry – पण शेवटी आपण दोघं एकमेकांशिवाय Incomplete म्हणायला
+                        हरकत नाही.
+                    </div>
+                </div>
+                <div class="pill-soft">Stronger after every Argument</div>
+            </div>
+
+            <div class="section-body bond-layout">
+                <div>
+                    <p class="hero-text">
+                        कधी कधी आपण एकमेकांवर रागावतो, ego येतो, misunderstandings होतात, silence येतो.
+                        पण त्या सगळ्याच्या पलीकडे एक गोष्ट कायम आहे –
+                        <strong>"तू माझी आहेस आणि मी तुझा आहे"</strong> हा feeling कधीही बदलत नाही.
+                    </p>
+
+                    <div class="chip-row">
+                        <div class="chip">कधी "मी समजत नाही तुला"</div>
+                        <div class="chip">कधी silent treatment😶</div>
+                        <div class="chip">कधी useless arguments</div>
+                        <div class="chip">कधी दोघेही शांत , पण भांडण थांबल नाही पाहिजे 😅😅</div>
+                    </div>
+
+                    <div class="bond-note">
+                        जर कधी तुला वाटलं की मी लांब गेलोय, busy झालोय किंवा नकोसा वाटलो –
+                        just remember: तू माझ्यासाठी आजही तितकीच important आहेस जितकी त्या सुरुवातीच्या दिवसांत
+                        होतीस-आहेस-असणार.
+                    </div>
+                </div>
+
+                <div>
+                    <div class="meter-wrap">
+                        <div style="font-weight: 700; margin-bottom: 10px;">💕Rate our bond ⭐ and send me a
+                            screenshot—just click on the stars and give whatever rating you feel</div>
+                        <div class="rating-stars">
+                            <span class="star" onclick="rateStars(this, 1)">⭐</span>
+                            <span class="star" onclick="rateStars(this, 2)">⭐</span>
+                            <span class="star" onclick="rateStars(this, 3)">⭐</span>
+                            <span class="star" onclick="rateStars(this, 4)">⭐</span>
+                            <span class="star" onclick="rateStars(this, 5)">⭐</span>
+                        </div>
+                        <div class="rating-text">
+                            Our bond is 5/5 ⭐ – Forever Unbreakable, lifetime Guarantee 💘
+                        </div>
+                        <div class="meter-bar">
+                            <div class="meter-fill"></div>
+                        </div>
+                    </div>
+
+                    <div class="bond-note" style="margin-top:10px;">
+                        💭 छोटी लाईन फक्त तुझ्यासाठी:
+                        <br />
+                        <em>
+                            "तुझा राग आणि मी तुझ्यावर रागावणं,
+                            तुझं हसणं — मी तुला रडवणं,
+                            तुझं काळजी घेणं —
+                            हे सगळे क्षण म्हणजेच बहीण आणि भाऊ यांचं नातं आहे."
+                        </em>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DRIPPING MEMORIES -->
+        <section id="memories-drip" class="reveal">
+            <div class="section-header">
+                <div>
+                    <div class="section-tag">Memories Gallery</div>
+                    <div class="section-title">
+                        <span>💕</span>
+                        <span>For You</span>
+                    </div>
+                    <div class="section-subtitle">
+                        Just like our bond, these memories keep flowing, evolving, and never really fade away.
+                    </div>
+                </div>
+                <div class="pill-soft">Some Memories and You </div>
+            </div>
+
+            <div class="section-body">
+                <div class="dripping-images-container">
+                    <div class="slideshow" aria-hidden="false">
+                        <img class="slide" src="hasu.jpg" alt="Memory 1">
+                        <img class="slide" src="m2.jpg" alt="Memory 2">
+                        <img class="slide" src="m3.jpg" alt="Memory 3">
+                        <img class="slide" src="m4.jpg" alt="Memory 4">
+                        <img class="slide" src="m5.jpg" alt="Memory 5">
+                        <img class="slide" src="m6.jpg" alt="Memory 6">
+                        <img class="slide" src="eye.jpg" alt="Memory 7">
+                        <img class="slide" src="m8.jpg" alt="Memory 8">
+                        <img class="slide" src="m9.jpg" alt="Memory 9">
+                        <img class="slide" src="m10.jpg" alt="Memory 10">
+                        <img class="slide" src="m11.jpg" alt="Memory 11">
+                        <img class="slide" src="dreamsss.jpeg" alt="Memory 12">
+                        <img class="slide" src="happy .jpg" alt="Memory 13">
+                        <img class="slide" src="1.jpg" alt="Memory 14">
+
+                    </div>
+                </div>
+                <p style="text-align:center; margin-top:20px; font-size:12px; color:var(--muted);">
+                    Each memory is a droplet in the ocean of our bond – unique, precious, and forever flowing.
+                </p>
+            </div>
+        </section>
+
+        <!-- FOREVER SUPPORT -->
+        <section id="support" class="reveal">
+            <div class="section-header">
+                <div>
+                    <div class="section-tag">Forever & ever</div>
+                    <div class="section-title">
+                        <span>🎁</span>
+                        <span>A Gift From Your Brother</span>
+                    </div>
+                    <div class="section-subtitle">
+                        आजच्या दिवसासाठी नाही, तर पूर्ण आयुष्यासाठी – this is my small lifetime commitment for you.
+                    </div>
+                </div>
+                <div class="pill-soft">With all my heart • No conditions</div>
+            </div>
+
+            <div class="section-body support-center">
+                <p class="hero-line-marathi">
+                    "काय situation असो, तू एक फोन दूर आहेस – आणि मी कायम उभा आहे तुझ्या बाजूला."
+                </p>
+
+                <p class="support-lines">
+                    I know the excitement may not feel the same to you from my side,<br />
+                    Because of some past fights we had,<br />
+                    But I tried my best and I will always do,<br />
+                    To make every moment with you special and true.
+                </p>
+
+                <p class="support-lines" style="font-size: 14px; color: #ffef9f; margin-top: 20px; font-style: italic;">
+                    You are a gentle gift that life has given me,
+                    someone who understands me even without words.
+                    In your presence, I find strength,
+                    and being close to you brings calm to my heart.
+                </p>
+
+                <p class="support-lines" style="margin-top: 20px; font-weight: 700; font-size: 16px;">
+                    Once Again, Very Happy Unforgettable Birthday<br />
+                    <span style="font-size: 20px; color: #ff6fd8;">To You,</span><br />
+                    <span style="font-size: 18px; color: #ffbdda;">My Dil Ki Dhadkan 💖💓</span>
+                </p>
+
+                <div class="signature" style="margin-top: 20px;">
+                    With all my heart and endless love,
+                    <br />
+                    Your Brother 💖
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p style="margin-bottom: 30px;">This whole page is just one line repeated again and again in different ways:
+            </p>
+            <p style="margin-bottom: 60px; font-size: 12px; color: #ffef9f;">"I'm grateful that you are my sister." 💖
+            </p>
+        </footer>
+    </main>
+
+    <script>
+        // Smooth scroll helper
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Star rating system
+
+        function rateStars(el, rating) {
+            const stars = document.querySelectorAll('.star');
+            const text = document.querySelector('.rating-text');
+            const meter = document.querySelector('.meter-fill');
+
+            stars.forEach((star, i) => {
+                star.classList.toggle('active', i < rating);
+            });
+
+            const messages = {
+                1: '1/5 ⭐ – Just the beginning 🌱',
+                2: '2/5 ⭐ – Growing stronger 💫',
+                3: '3/5 ⭐ – Deep & meaningful 🤍',
+                4: '4/5 ⭐ – Strong bond 💖',
+                5: '5/5 ⭐ – Forever unbreakable 💘'
+            };
+
+            text.textContent = messages[rating];
+            meter.style.width = (rating * 20) + '%';
+        }
+
+
+        // Initialize stars to 5
+        document.addEventListener('DOMContentLoaded', function () {
+            const stars = document.querySelectorAll('.star');
+            stars.forEach((star, index) => {
+                if (index < 5) {
+                    star.classList.add('active');
+                }
+            });
+        });
+
+        // Music control: unmute on first interaction, toggle on button
+        const music = document.getElementById('bg-music');
+        const musicStatus = document.getElementById('music-status');
+        let musicUnlocked = false;
+
+        function unlockMusicOnce() {
+            if (!musicUnlocked) {
+                music.muted = false;
+                music.play().catch(() => { });
+                musicUnlocked = true;
+                if (musicStatus) musicStatus.textContent = '(playing softly in background)';
+                document.removeEventListener('click', unlockMusicOnce);
+            }
+        }
+        document.addEventListener('click', unlockMusicOnce);
+
+        function toggleMusic() {
+            if (!musicUnlocked) {
+                unlockMusicOnce();
+                return;
+            }
+            if (music.paused) {
+                music.play().catch(() => { });
+                if (musicStatus) musicStatus.textContent = '(music on – feel the vibe)';
+            } else {
+                music.pause();
+                if (musicStatus) musicStatus.textContent = '(music off – tap to play)';
+            }
+        }
+
+        // Scroll reveal
+        const revealEls = document.querySelectorAll('.reveal, section');
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.18 }
+        );
+        revealEls.forEach((el) => observer.observe(el));
+
+        // Floating hearts generator
+        const confetti = document.querySelector('.confetti');
+        function createHeart() {
+            if (!confetti) return;
+            const h = document.createElement('div');
+            h.className = 'heart';
+            h.style.left = Math.random() * 100 + 'vw';
+            h.style.animationDuration = 6 + Math.random() * 6 + 's';
+            h.style.opacity = 0.4 + Math.random() * 0.4;
+            h.style.background = Math.random() > 0.5 ? '#ff6fd8' : '#ffef9f';
+            confetti.appendChild(h);
+            setTimeout(() => h.remove(), 12000);
+        }
+        for (let i = 0; i < 24; i++) {
+            setTimeout(createHeart, i * 300);
+        }
+        setInterval(createHeart, 1800);
+
+        // --- Birthday Splash Screen with Blasts & Balloons ---
+        (function () {
+            const splash = document.getElementById('birthdaySplash');
+            if (!splash) return;
+
+            // Create blast particles  
+            function createBlast(fromLeft = true) {
+                const blastContainer = fromLeft
+                    ? document.getElementById('blastLeft')
+                    : document.getElementById('blastRight');
+
+                if (!blastContainer) return;
+
+                const particleCount = 40;
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'blast-particle';
+
+                    const size = Math.random() * 20 + 8;
+                    particle.style.width = size + 'px';
+                    particle.style.height = size + 'px';
+
+                    const colors = ['#ff6fd8', '#ffef9f', '#ff9f7f', '#b28dff', '#8fd3f4'];
+                    particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+                    // position at bottom corner
+                    const startX = fromLeft ? -20 : window.innerWidth + 20;
+                    const startY = window.innerHeight - 20;
+                    particle.style.left = startX + 'px';
+                    particle.style.top = startY + 'px';
+
+                    // random angle explosion
+                    const angle = fromLeft
+                        ? Math.random() * 90 + 25
+                        : Math.random() * 90 + 65;
+                    const distance = Math.random() * 400 + 300;
+                    const rad = angle * Math.PI / 180;
+                    const tx = Math.cos(rad) * distance;
+                    const ty = -Math.sin(rad) * distance;
+
+                    particle.style.setProperty('--tx', tx + 'px');
+                    particle.style.setProperty('--ty', ty + 'px');
+
+                    blastContainer.appendChild(particle);
+                    setTimeout(() => particle.remove(), 1200);
+                }
+            }
+
+            // Create balloons
+            function createBalloons() {
+                const container = document.getElementById('balloonContainer');
+                if (!container) return;
+
+                const colors = ['red', 'blue', 'yellow', 'pink', 'green'];
+                for (let i = 0; i < 12; i++) {
+                    const balloon = document.createElement('div');
+                    balloon.className = 'balloon ' + colors[Math.floor(Math.random() * colors.length)];
+                    balloon.style.left = Math.random() * 100 + '%';
+                    balloon.style.animationDuration = (4 + Math.random() * 2) + 's';
+                    balloon.style.animationDelay = Math.random() * 2 + 's';
+                    container.appendChild(balloon);
+                }
+            }
+
+            // Trigger blasts and balloons on page load
+            window.addEventListener('load', () => {
+                createBalloons();
+                // Left and right blasts in sequence
+                createBlast(true);
+                setTimeout(() => createBlast(false), 100);
+                setTimeout(() => createBlast(true), 200);
+            });
+
+            // Hide splash after 13 seconds
+            setTimeout(() => {
+                splash.classList.add('hidden');
+                // fully remove after fade
+                setTimeout(() => {
+                    splash.style.display = 'none';
+                }, 1000);
+            }, 10000);
+        })();
+
+        // --- Memories slideshow (fade) ---
+        (function () {
+            const container = document.querySelector('.dripping-images-container');
+            if (!container) return;
+
+            const slides = Array.from(container.querySelectorAll('.slideshow .slide'));
+            if (!slides.length) return;
+
+            let idx = 0;
+            const showSlide = (i) => {
+                slides.forEach((s, j) => s.classList.toggle('show', j === i));
+            };
+
+            // show first immediately
+            document.addEventListener('DOMContentLoaded', () => {
+                showSlide(0);
+                setInterval(() => {
+                    idx = (idx + 1) % slides.length;
+                    showSlide(idx);
+                }, 3000); // 4s per slide (within requested 3-5s)
+            });
+        })();
+    </script>
+</body>
+
+</html>
